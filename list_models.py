@@ -9,7 +9,12 @@ client = OpenAI(
     base_url="https://api.groq.com/openai/v1"
 )
 
-models = client.models.list()
+gemini_client = OpenAI(
+    api_key=os.getenv("GEMINI_API_KEY"),
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+) 
+
+models = gemini_client.models.list()
 
 for model in models.data:
     print(model.id)
